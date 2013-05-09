@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 
 require "src/Sneeze.php";
 
-$app = new Sneeze;
+$app = new Sneeze\Sneeze;
 
 $app->get('/', function() {
 	echo 'hello, world!';

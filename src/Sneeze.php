@@ -1,5 +1,7 @@
 <?php
 
+namespace Sneeze;
+
 require_once 'Request.php';
 
 class Sneeze
@@ -81,7 +83,7 @@ class Sneeze
 	    	$boundClosure();
 
 		} else {
-
+            echo "404";
 			http_response_code(404);
 
 		}

@@ -1,5 +1,7 @@
 <?php
 
+namespace Sneeze;
+
 class Request
 {
 	public $uri;
