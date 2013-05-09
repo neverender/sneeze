@@ -7,6 +7,10 @@ require "src/Sneeze.php";
 
 $app = new Sneeze;
 
+$app->get('/', function() {
+	echo 'hello, world!';
+});
+
 
 $app->get('/hello/:id/whatever/:whatever_id', function() {
 	print_r($this->request);
