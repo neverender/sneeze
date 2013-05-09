@@ -7,9 +7,13 @@ class Sneeze
 	public $params = [];
 	public $callback;
 
+    public function __construct()
+    {
+        $this->request = new Request;
+    }
+
     public function parse($route_string)
     {
-    	$this->request = new Request;
 
         $route_parts = explode("/", $route_string);
         array_shift($route_parts);
