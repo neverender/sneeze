@@ -6,8 +6,8 @@ require_once 'Request.php';
 
 class Sneeze
 {
-	public $params = [];
-	public $callback;
+    public $params = [];
+    public $callback;
 
     public function __construct()
     {
@@ -24,68 +24,68 @@ class Sneeze
         array_shift($url_parts);
 
         foreach ($route_parts as $key => $value) {
-        	if($value && $value[0] === ':' && isset($url_parts[$key])) {
-        		$this->params[substr($value, 1)] = $url_parts[$key];
-        		$url_parts[$key] = $value;
+            if($value && $value[0] === ':' && isset($url_parts[$key])) {
+                $this->params[substr($value, 1)] = $url_parts[$key];
+                $url_parts[$key] = $value;
         	}
         }
 
        	if($url_parts == $route_parts) {
 
-       		return true;
+       	    return true;
        	
-       	} else {
+        } else {
        	
-       		return false;
-       	}
+       	    return false;
+        }
     }
 
     public function get($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request->method == "GET") {
-    		$this->callback = $callback->bindTo($this);
-	    }
+        if($this->parse($route_string) == true && $this->request->method == "GET") {
+            $this->callback = $callback->bindTo($this);
+        }
 
     }
 
     public function post($route_string, $callback)
     {
     	if($this->parse($route_string) == true && $this->request->method == "POST") {
-			$this->callback = $callback->bindTo($this);
-	    }
+            $this->callback = $callback->bindTo($this);
+        }
 
     }
 
 
     public function put($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request->method == "PUT") {
-			$this->callback = $callback->bindTo($this);
-	    }
+        if($this->parse($route_string) == true && $this->request->method == "PUT") {
+            $this->callback = $callback->bindTo($this);
+        }
 
     }
 
 
     public function delete($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request->method == "DELETE") {
-    		$this->callback = $callback->bindTo($this);
-	    }
+        if($this->parse($route_string) == true && $this->request->method == "DELETE") {
+            $this->callback = $callback->bindTo($this);
+        }
 
     }
 
     public function run() 
     {
-    	$boundClosure = $this->callback;
-    	
-    	if(isset($boundClosure)) {
+        $boundClosure = $this->callback;
 
-	    	$boundClosure();
+        if(isset($boundClosure)) {
 
-		} else {
+            $boundClosure();
+
+        } else {
             echo "404";
-			http_response_code(404);
+            http_response_code(404);
 
-		}
+        }
     }
 }

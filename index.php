@@ -9,23 +9,23 @@ require "src/Sneeze.php";
 $app = new Sneeze\Sneeze;
 
 $app->get('/', function() {
-	echo 'hello, world!';
+    echo 'hello, world!';
 });
 
 $app->get('/hello/:id/whatever/:whatever_id', function() {
-	print_r($this->request);
+    print_r($this->request);
 });
 
 $app->post("/post/:id", function() {
-	echo $this->params['id'];
+    echo $this->params['id'];
 });
 
 $app->put('/put/:id', function() {
-	print_r($this->request);
+    print_r($this->request);
 });
 
 $app->delete('/d', function() {
-	echo 'd';
+    echo 'd';
 });
 
 
