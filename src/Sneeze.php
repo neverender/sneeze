@@ -2,7 +2,7 @@
 
 require_once 'Request.php';
 
-class Root
+class Sneeze
 {
 	public $params = [];
 	public $callback;

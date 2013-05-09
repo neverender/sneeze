@@ -3,9 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require "src/Root.php";
+require "src/Sneeze.php";
 
-$app = new Root;
+$app = new Sneeze;
 
 
 $app->get('/hello/:id/whatever/:whatever_id', function() {
