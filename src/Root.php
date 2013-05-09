@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Request.php';
+
 class Root
 {
 	public $params = [];
@@ -7,16 +9,13 @@ class Root
 
     public function parse($route_string)
     {
-
-    	$this->request_uri = $_SERVER["REQUEST_URI"];
-		$this->request_method = $_SERVER["REQUEST_METHOD"];
+    	$this->request = new Request;
 
         $route_parts = explode("/", $route_string);
         array_shift($route_parts);
 
-        $url_parts = explode("/", $this->request_uri);
+        $url_parts = explode("/", $this->request->uri);
         array_shift($url_parts);
-
 
         foreach ($route_parts as $key => $value) {
         	if($value[0] === ':' && isset($url_parts[$key])) {
@@ -47,7 +46,7 @@ class Root
 
     public function get($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request_method == "GET") {
+    	if($this->parse($route_string) == true && $this->request->method == "GET") {
     		$this->bindAndCallClosure($callback);
 	    }
 
@@ -55,7 +54,7 @@ class Root
 
     public function post($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request_method == "POST") {
+    	if($this->parse($route_string) == true && $this->request->method == "POST") {
 			$this->bindAndCallClosure($callback);
 	    }
 
@@ -73,7 +72,7 @@ class Root
 
     public function delete($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request_method == "DELETE") {
+    	if($this->parse($route_string) == true && $this->request->method == "DELETE") {
     		$this->bindAndCallClosure($callback);
 	    }
 
