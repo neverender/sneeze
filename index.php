@@ -9,7 +9,7 @@ $app = new Root;
 
 
 $app->get('/hello/:id/whatever/:whatever_id', function() {
-	echo $this->params['id'];
+	print_r($this->request);
 });
 
 $app->post("/post/:id", function() {
@@ -17,9 +17,12 @@ $app->post("/post/:id", function() {
 });
 
 $app->put('/put/:id', function() {
-	echo $this->params['id'];
+	print_r($this->request);
 });
 
 $app->delete('/d', function() {
 	echo 'd';
 });
+
+
+$app->run();

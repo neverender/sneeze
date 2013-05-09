@@ -5,7 +5,7 @@ require_once 'Request.php';
 class Root
 {
 	public $params = [];
-	public $request_method;
+	public $callback;
 
     public function parse($route_string)
     {
@@ -34,20 +34,10 @@ class Root
        	}
     }
 
-
-
-    public function bindAndCallClosure($callback)
-    {
-    	//php 5.4 feature
-    	$boundClosure = $callback->bindTo($this);
-		$boundClosure();
-		exit();
-    }
-
     public function get($route_string, $callback)
     {
     	if($this->parse($route_string) == true && $this->request->method == "GET") {
-    		$this->bindAndCallClosure($callback);
+    		$this->callback = $callback->bindTo($this);
 	    }
 
     }
@@ -55,7 +45,7 @@ class Root
     public function post($route_string, $callback)
     {
     	if($this->parse($route_string) == true && $this->request->method == "POST") {
-			$this->bindAndCallClosure($callback);
+			$this->callback = $callback->bindTo($this);
 	    }
 
     }
@@ -64,7 +54,7 @@ class Root
     public function put($route_string, $callback)
     {
     	if($this->parse($route_string) == true && $this->request_method == "PUT") {
-			$this->bindAndCallClosure($callback);
+			$this->callback = $callback->bindTo($this);
 	    }
 
     }
@@ -73,8 +63,23 @@ class Root
     public function delete($route_string, $callback)
     {
     	if($this->parse($route_string) == true && $this->request->method == "DELETE") {
-    		$this->bindAndCallClosure($callback);
+    		$this->callback = $callback->bindTo($this);
 	    }
 
+    }
+
+    public function run() 
+    {
+    	$boundClosure = $this->callback;
+    	
+    	if(isset($boundClosure)) {
+
+	    	$boundClosure();
+
+		} else {
+
+			http_response_code(404);
+
+		}
     }
 }
