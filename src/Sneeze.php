@@ -59,7 +59,7 @@ class Sneeze
 
     public function put($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request_method == "PUT") {
+    	if($this->parse($route_string) == true && $this->request->method == "PUT") {
 			$this->callback = $callback->bindTo($this);
 	    }
 
