@@ -7,7 +7,7 @@ require_once 'Request.php';
 class Sneeze
 {
     public $params = [];
-    public $callback;
+    private $callback;
 
     public function __construct()
     {
@@ -79,13 +79,10 @@ class Sneeze
         $boundClosure = $this->callback;
 
         if(isset($boundClosure)) {
-
             $boundClosure();
-
         } else {
             echo "404";
             http_response_code(404);
-
         }
     }
 }

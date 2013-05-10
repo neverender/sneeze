@@ -10,7 +10,8 @@ class Request
     public $time_float;
     public $body;
 
-    function __construct() {
+    function __construct() 
+    {
         $server = $_SERVER;
 
         $this->uri = $server['REQUEST_URI'];
