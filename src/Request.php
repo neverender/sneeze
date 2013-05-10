@@ -19,5 +19,7 @@ class Request
         $this->body = file_get_contents('php://input');
         $this->time = $server['REQUEST_TIME'];
         $this->time_float = $server['REQUEST_TIME_FLOAT'];
+        $this->get = $_GET;
+        $this->post = $_POST;
 	}
 }

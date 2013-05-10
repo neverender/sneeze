@@ -7,7 +7,7 @@ require_once 'Request.php';
 class Sneeze
 {
     public $params = [];
-    private $callback;
+    private $callback = null;
 
     public function __construct()
     {
@@ -24,13 +24,13 @@ class Sneeze
         array_shift($url_parts);
 
         foreach ($route_parts as $key => $value) {
-            if($value && $value[0] === ':' && isset($url_parts[$key])) {
+            if ($value && $value[0] === ':' && isset($url_parts[$key])) {
                 $this->params[substr($value, 1)] = $url_parts[$key];
                 $url_parts[$key] = $value;
-        	}
+            }
         }
 
-       	if($url_parts == $route_parts) {
+       	if ($url_parts == $route_parts) {
 
        	    return true;
        	
@@ -42,7 +42,7 @@ class Sneeze
 
     public function get($route_string, $callback)
     {
-        if($this->parse($route_string) == true && $this->request->method == "GET") {
+        if ($this->parse($route_string) == true && $this->request->method == "GET") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -50,7 +50,7 @@ class Sneeze
 
     public function post($route_string, $callback)
     {
-    	if($this->parse($route_string) == true && $this->request->method == "POST") {
+    	if ($this->parse($route_string) == true && $this->request->method == "POST") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -59,7 +59,7 @@ class Sneeze
 
     public function put($route_string, $callback)
     {
-        if($this->parse($route_string) == true && $this->request->method == "PUT") {
+        if ($this->parse($route_string) == true && $this->request->method == "PUT") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -68,7 +68,7 @@ class Sneeze
 
     public function delete($route_string, $callback)
     {
-        if($this->parse($route_string) == true && $this->request->method == "DELETE") {
+        if ($this->parse($route_string) == true && $this->request->method == "DELETE") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -78,7 +78,7 @@ class Sneeze
     {
         $boundClosure = $this->callback;
 
-        if(isset($boundClosure)) {
+        if (isset($boundClosure)) {
             $boundClosure();
         } else {
             echo "404";
