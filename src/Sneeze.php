@@ -2,8 +2,6 @@
 
 namespace Sneeze;
 
-require_once 'Request.php';
-
 class Sneeze
 {
     public $params = [];
@@ -11,7 +9,16 @@ class Sneeze
 
     public function __construct()
     {
-        $this->request = new Request;
+
+        $this->request = [
+            'uri' => $_SERVER['REQUEST_URI'],
+            'method' => $_SERVER['REQUEST_METHOD'],
+            'body' => file_get_contents('php://input'),
+            'time' => $_SERVER['REQUEST_TIME'],
+            'time_float' => $_SERVER['REQUEST_TIME_FLOAT'],
+            'get' => $_GET,
+            'post' => $_POST
+        ];
     }
 
     public function parse($route_string)
@@ -20,7 +27,7 @@ class Sneeze
         $route_parts = explode("/", $route_string);
         array_shift($route_parts);
 
-        $url_parts = explode("/", $this->request->uri);
+        $url_parts = explode("/", $this->request['uri']);
         array_shift($url_parts);
 
         foreach ($route_parts as $key => $value) {
@@ -30,7 +37,7 @@ class Sneeze
             }
         }
 
-       	if ($url_parts == $route_parts) {
+       	if ($url_parts === $route_parts) {
 
        	    return true;
        	
@@ -42,7 +49,7 @@ class Sneeze
 
     public function get($route_string, $callback)
     {
-        if ($this->parse($route_string) == true && $this->request->method == "GET") {
+        if ($this->parse($route_string) == true && $this->request['method'] == "GET") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -50,7 +57,7 @@ class Sneeze
 
     public function post($route_string, $callback)
     {
-    	if ($this->parse($route_string) == true && $this->request->method == "POST") {
+    	if ($this->parse($route_string) == true && $this->request['method'] == "POST") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -59,7 +66,7 @@ class Sneeze
 
     public function put($route_string, $callback)
     {
-        if ($this->parse($route_string) == true && $this->request->method == "PUT") {
+        if ($this->parse($route_string) == true && $this->request['method'] == "PUT") {
             $this->callback = $callback->bindTo($this);
         }
 
@@ -68,7 +75,7 @@ class Sneeze
 
     public function delete($route_string, $callback)
     {
-        if ($this->parse($route_string) == true && $this->request->method == "DELETE") {
+        if ($this->parse($route_string) == true && $this->request['method'] == "DELETE") {
             $this->callback = $callback->bindTo($this);
         }
 
