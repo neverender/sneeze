@@ -43,7 +43,6 @@ class Sneeze
         if ($this->parse($route_string) == true && $this->request['method'] == "GET") {
             $this->callback = $callback->bindTo($this);
         }
-
     }
 
     public function post($route_string, $callback)
