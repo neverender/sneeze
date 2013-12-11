@@ -9,7 +9,6 @@ class Sneeze
 
     public function __construct()
     {
-
         $this->request = [
             'uri' => $_SERVER['REQUEST_URI'],
             'method' => $_SERVER['REQUEST_METHOD'],
@@ -23,7 +22,6 @@ class Sneeze
 
     public function parse($route_string)
     {
-
         $route_parts = explode("/", $route_string);
         array_shift($route_parts);
 
@@ -37,14 +35,7 @@ class Sneeze
             }
         }
 
-       	if ($url_parts === $route_parts) {
-
-       	    return true;
-       	
-        } else {
-       	
-       	    return false;
-        }
+        return $url_parts === $route_parts ? true : false;
     }
 
     public function get($route_string, $callback)
@@ -57,28 +48,23 @@ class Sneeze
 
     public function post($route_string, $callback)
     {
-    	if ($this->parse($route_string) == true && $this->request['method'] == "POST") {
+        if ($this->parse($route_string) == true && $this->request['method'] == "POST") {
             $this->callback = $callback->bindTo($this);
         }
-
     }
-
 
     public function put($route_string, $callback)
     {
         if ($this->parse($route_string) == true && $this->request['method'] == "PUT") {
             $this->callback = $callback->bindTo($this);
         }
-
     }
-
 
     public function delete($route_string, $callback)
     {
         if ($this->parse($route_string) == true && $this->request['method'] == "DELETE") {
             $this->callback = $callback->bindTo($this);
         }
-
     }
 
     public function run() 
