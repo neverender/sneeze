@@ -33,6 +33,8 @@ class Sneeze
                 $this->params[substr($value, 1)] = $url_parts[$key];
                 $url_parts[$key] = $value;
             }
+            //ignore querystring
+            $url_parts[$key] = explode('?', $value)[0];
         }
 
         return $url_parts === $route_parts ? true : false;
