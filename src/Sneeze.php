@@ -14,7 +14,11 @@ class Sneeze
 
         // ignore querystring
         $url_parts = explode("/", explode('?', $this->request['uri'])[0]);
-        array_shift($url_parts);
+
+        // remove first part if empty unless route is '/'
+        if($url_parts[0] === "" && !empty($url_parts[1])) {
+            array_shift($url_parts);
+        }
 
         // ignore trailing slash
         if($url_parts[count($url_parts)-1] == null) {
