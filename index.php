@@ -8,16 +8,16 @@ require "src/Sneeze.php";
 
 $app = new Sneeze\Sneeze;
 
-$app->get('/', function() {
-    echo 'hello, world!';
+$app->get('/people/:name', function($name) {
+      echo 'hello ' . $name;
 });
 
-$app->get('/hello/:id/whatever/:whatever_id', function() {
+$app->get('/', function() {
     print_r($this->request);
 });
 
-$app->post("/post/:id", function() {
-    echo $this->params['id'];
+$app->post("/post/:id", function($id) {
+    echo $id;
 });
 
 $app->put('/put/:id', function() {
