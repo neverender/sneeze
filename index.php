@@ -8,7 +8,7 @@ require "src/Sneeze.php";
 
 $app = new Sneeze\Sneeze;
 
-$app->get('/people/:name', function($name) {
+$app->get('/hello/:name', function($name) {
       echo 'hello ' . $name;
 });
 
