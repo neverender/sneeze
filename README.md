@@ -41,4 +41,5 @@ Inside routes, you have access to $this->request, which is an associative array 
 ####TODO####
 
 * Tests
+* Refactor to make it more testable
 
