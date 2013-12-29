@@ -4,6 +4,9 @@ Sneeze is a simple php router.
 
 It uses 5.4+ features such as [closure object binding](http://www.php.net/manual/en/closure.bindto.php) and [short array syntax](http://php.net/manual/en/migration54.new-features.php).
 
+####Requirements####
+php >= 5.4.0
+    
 ####Installation####
 
 Use [Composer](http://getcomposer.org/)
@@ -34,3 +37,8 @@ You can also define PUT, POST and DELETE HTTP routes. Since modern browsers don'
     </form>
 
 Inside routes, you have access to $this->request, which is an associative array of the usual request variables including 'get', 'post', 'uri', 'method', 'body', etc.
+
+####TODO####
+
+* Tests
+
