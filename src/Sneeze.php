@@ -63,7 +63,7 @@ class Sneeze
         if (isset($this->callback)) {
             call_user_func_array($this->callback, $this->params);
         } else {
-            echo "404";
+            echo "Page Not Found";
             http_response_code(404);
         }
     }
