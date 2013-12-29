@@ -2,10 +2,20 @@
   "name": "neverender/sneeze",
   "description": "A simple php 5.4+ router",
   "homepage": "https://github.com/neverender/sneeze",
+  "keywords": ["router","microframework"],
   "license": "MIT",
   "autoload": {
     "psr-0": {
       "Sneeze\\": "src/",
     }
+  },
+  "authors": [
+    {
+      "name": "Nicholas Bernardi",
+      "email": "no.one.wins@gmail.com",
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
   }
 }
