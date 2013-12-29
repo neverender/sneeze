@@ -5,7 +5,7 @@
   "keywords": ["router","microframework"],
   "license": "MIT",
   "autoload": {
-    "psr-4": {
+    "psr-0": {
       "Sneeze": "./src"
     }
   },
