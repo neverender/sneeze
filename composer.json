@@ -2,5 +2,10 @@
   "name": "neverender/sneeze",
   "description": "A simple php 5.4+ router",
   "homepage": "https://github.com/neverender/sneeze",
-  "license": "MIT"
+  "license": "MIT",
+  "autoload": {
+    "psr-0": {
+      "Sneeze\\": "src/",
+    }
+  }
 }
