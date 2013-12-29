@@ -4,6 +4,10 @@ Sneeze is a simple php router.
 
 It uses 5.4+ features such as [closure object binding](http://www.php.net/manual/en/closure.bindto.php) and [short array syntax](http://php.net/manual/en/migration54.new-features.php).
 
+####Installation####
+
+Use [Composer](http://getcomposer.org/)
+
 ####Example####
 
 Instantiate Sneeze application:
@@ -19,3 +23,6 @@ Define an HTTP GET route:
 Run it:
 
     $app->run();
+    
+    
+
