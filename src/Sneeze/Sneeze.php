@@ -32,7 +32,7 @@ class Sneeze
             }
         }
 
-        return $url_parts === $route_parts ? true : false;
+        return $url_parts === $route_parts;
     }
 
     public function __construct()
@@ -58,7 +58,7 @@ class Sneeze
         }
     }
 
-    public function run() 
+    public function run()
     {
         if (isset($this->callback)) {
             call_user_func_array($this->callback, $this->params);
