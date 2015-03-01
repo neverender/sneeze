@@ -7,7 +7,7 @@ class Sneeze
     private $params = [];
     private $callback = null;
 
-    private function parseURI($route_string)
+    private function process($route_string)
     {
         $route_parts = explode("/", $route_string);
         array_shift($route_parts);
@@ -55,7 +55,7 @@ class Sneeze
     public function __call($name, $arguments)
     {
         list($route, $callback) = $arguments;
-        if(in_array($name, ['get', 'post', 'put', 'delete']) && $this->parseURI($route) === true) {
+        if(in_array($name, ['get', 'post', 'put', 'delete']) && $this->process($route) === true) {
             if ($this->request['method'] == strtoupper($name) || isset($this->request['post']['_METHOD']) && $this->request['post']['_METHOD'] == strtoupper($name)) {
                 $this->callback = $callback->bindTo($this);
             }
