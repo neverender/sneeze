@@ -26,11 +26,15 @@ class Sneeze
         }
 
         foreach ($route_parts as $key => $value) {
+            // if route part is segment :perameter
             if ($value && $value[0] === ':' && isset($url_parts[$key])) {
+                // add to params array, minus ':'
                 $this->params[substr($value, 1)] = $url_parts[$key];
+                // swap parameter for actual value
                 $url_parts[$key] = $value;
             }
         }
+
 
         return $url_parts === $route_parts;
     }
